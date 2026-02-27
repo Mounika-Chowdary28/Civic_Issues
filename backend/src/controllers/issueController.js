@@ -62,7 +62,7 @@ exports.createIssue = async (req, res) => {
       },
       address,
       priority: priority || 'Medium',
-      image: req.file.filename,
+      image: req.file.path || (req.file.url ? req.file.url : ''), // Cloudinary URL
       reportedBy: req.user._id
     };
     
@@ -76,13 +76,7 @@ exports.createIssue = async (req, res) => {
     });
   } catch (error) {
     console.error('Issue creation error:', error);
-    // Delete uploaded file if issue creation fails
-    if (req.file) {
-      const filePath = path.join(__dirname, '../../uploads', req.file.filename);
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-      }
-    }
+    // No need to delete local file, as images are uploaded to Cloudinary
     res.status(500).json({
       success: false,
       message: error.message

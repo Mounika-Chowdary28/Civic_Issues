@@ -190,8 +190,9 @@ const Dashboard = () => {
                 <div key={issue._id} className="issue-card card">
                   <div className="issue-image">
                     <img
-                      src={`http://localhost:5000/uploads/${issue.image}`}
+                      src={issue.image}
                       alt={issue.title}
+                      onError={e => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/300x200?text=No+Image'; }}
                     />
                     <span className={getStatusBadgeClass(issue.status)}>
                       {issue.status}

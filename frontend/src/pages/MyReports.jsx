@@ -156,9 +156,11 @@ const MyReports = () => {
                     <td>
                       <div className="table-title">
                         <img
-                          src={`http://localhost:5000/uploads/${issue.image}`}
+                          src={issue.image}
                           alt={issue.title}
                           className="table-thumbnail"
+                          style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }}
+                          onError={e => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/60x60?text=No+Image'; }}
                         />
                         <span>{issue.title}</span>
                       </div>

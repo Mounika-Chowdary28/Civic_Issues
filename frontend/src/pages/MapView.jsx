@@ -174,8 +174,10 @@ const MapView = () => {
                   <div className="map-popup">
                     <div className="popup-image">
                       <img
-                        src={`http://localhost:5000/uploads/${issue.image}`}
+                        src={issue.image}
                         alt={issue.title}
+                        style={{ width: '100px', height: '80px', objectFit: 'cover', borderRadius: '4px' }}
+                        onError={e => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/100x80?text=No+Image'; }}
                       />
                     </div>
                     <div className="popup-content">

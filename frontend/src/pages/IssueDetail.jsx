@@ -103,8 +103,10 @@ const IssueDetail = () => {
 
               <div className="detail-image">
                 <img
-                  src={`http://localhost:5000/uploads/${issue.image}`}
+                  src={issue.image}
                   alt={issue.title}
+                  style={{ width: '100%', maxWidth: '400px', height: 'auto', objectFit: 'cover', borderRadius: '8px' }}
+                  onError={e => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/400x300?text=No+Image'; }}
                 />
               </div>
 

@@ -199,11 +199,13 @@ const AdminIssues = () => {
                   <tr key={issue._id}>
                     <td>
                       <div className="issue-cell">
-                        <img
-                          src={`http://localhost:5000/uploads/${issue.image}`}
-                          alt={issue.title}
-                          className="issue-thumbnail"
-                        />
+                          <img
+                            src={issue.image}
+                            alt={issue.title}
+                            className="issue-thumbnail"
+                            style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }}
+                            onError={e => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/60x60?text=No+Image'; }}
+                          />
                         <div>
                           <div className="issue-title">{issue.title}</div>
                           <div className="issue-location">📍 {issue.address}</div>
